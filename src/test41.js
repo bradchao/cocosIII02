@@ -5,6 +5,25 @@ var Test41Layer = cc.Layer.extend({
         this._super();
         var size = cc.winSize;
 
+        var bg = new cc.Sprite(res.scene);
+        bg.attr({
+            x: size.width/2,
+            y: size.height/2
+        });
+        bg.scaleX = size.width / bg.width;
+        bg.scaleY = size.height / bg.height;
+        //cc.log(size.height + ":" + bg.height + ":" + bg.scaleY);
+        this.addChild(bg,0);
+
+        var hamster = new cc.Sprite(res.hamster_png);
+        hamster.attr({
+            x: 728,
+            y: 218
+        });
+        this.addChild(hamster);
+
+
+
         var title = new cc.LabelTTF("Scene 4-1","", 36);
         title.attr({
             x: size.width/2,

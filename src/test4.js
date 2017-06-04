@@ -4,6 +4,16 @@ var Test4Layer = cc.Layer.extend({
     ctor:function () {
         this._super();
         var size = cc.winSize;
+        cc.log("ctor");
+
+        var bg = new cc.Sprite(res.bg_png, cc.rect(0,192,512,172));
+        bg.attr({
+            x: size.width/2,
+            y: size.height/2
+        });
+        bg.scaleX = size.width / bg.width;
+        bg.scaleY = size.height / bg.height;
+        this.addChild(bg,0);
 
         var title = new cc.LabelTTF("Scene 4","", 36);
         title.attr({
@@ -46,14 +56,24 @@ var Test4Layer = cc.Layer.extend({
     },
 
     next3: function () {
-        cc.director.pushScene(new cc.TransitionCrossFade(2,new Test41Scene()));
+        cc.director.pushScene(new cc.TransitionPageTurn(2,new Test41Scene()));
     },
 
     next4: function () {
         cc.director.pushScene(new cc.TransitionMoveInL(2,new Test41Scene()));
     },
-
-
+    onEnter: function () {
+        cc.log("onEnter");
+    },
+    onEnterTransitionDidFinish: function () {
+        cc.log("onEnterTransitionDidFinish");
+    },
+    onExit: function () {
+        cc.log("onExit");
+    },
+    onExitTransitionDidStart: function () {
+        cc.log("onExitTransitionDidStart");
+    },
 });
 
 var Test4Scene = cc.Scene.extend({
